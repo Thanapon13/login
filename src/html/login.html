@@ -1,9 +1,13 @@
 <!-- @format -->
 
-<div
-  id="loginPage"
-  class="flexCenter pageInit">
-  <div class="flexCenterColW100">
+<div id="loginPage" class="flexCenter pageInit">
+  <div class="container">
+    <div style="height: 20px"></div>
+
+    <div class="headerTitle">
+      <h1>Login</h1>
+    </div>
+
     <div style="height: 20px"></div>
 
     <div class="coverBoxInput">
@@ -13,7 +17,8 @@
         type="number"
         placeholder="Phone"
         pattern="/^-?\d+\.?\d*$/"
-        onKeyPress="if(this.value.length==11) return false;" />
+        onKeyPress="if(this.value.length==11) return false;"
+      />
     </div>
 
     <div style="height: 20px"></div>
@@ -23,91 +28,75 @@
         id="password"
         class="boxInput"
         type="password"
-        placeholder="Password" />
-    </div>
-  </div>
-
-  <div
-    class="flexCenter"
-    style="font-size: 10px">
-    <input
-      type="checkbox"
-      id="checkBtnAgreementBtnLogin"
-      class="checkbox" />
-    <div style="width: 5px"></div>
-    <span
-      id="login_span1"
-      style="color: #000"></span
-    >&nbsp;
-    <span
-      id="login_span2"
-      style="color: #457bff"></span
-    >&nbsp;
-    <span
-      id="login_span3"
-      style="color: #000"></span
-    >&nbsp;
-    <span
-      id="login_span4"
-      style="color: #457bff"></span>
-  </div>
-
-  <div class="login_bottom flexEndColW100">
-    <div
-      id="loginBtn"
-      class="btnComm">
-      Login
+        placeholder="Password"
+      />
     </div>
 
     <div style="height: 10px"></div>
 
-    <div class="flexCenter spanUnderSubmit">
-      <div id="noAccount"></div>
-      <div
-        style="color: #457bff"
-        id="goRegisterBtn"></div>
+    <div class="flexCenter" style="font-size: 10px">
+      <input type="checkbox" id="checkBtnAgreementBtnLogin" class="checkbox" />
+      <div style="width: 5px"></div>
+      <span id="login_span1" style="color: #000"></span>&nbsp;
+    </div>
+
+    <div style="height: 10px"></div>
+
+    <div class="login_bottom flexEndColW100">
+      <div id="loginBtn" class="btnComm">Login</div>
+
+      <div style="height: 10px"></div>
+
+      <div class="flexCenter spanUnderSubmit">
+        <div id="noAccount"></div>
+        <div style="color: #457bff" id="goRegisterBtn"></div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-  var loginObj = new login()
-  loginObj.init()
+  var loginObj = new login();
+  loginObj.init();
 
   function login() {
-    var isAgree = false
+    var isAgree = false;
     this.init = function () {
-      pageInit("loginPage")
+      pageInit("loginPage");
 
       $("#goRegisterBtn").click(function () {
-        pageShow("registerPage")
-      })
+        pageShow("registerPage");
+      });
 
       $("#checkBtnAgreementBtnLogin").click(function () {
         if (isAgree) {
-          $("#checkBtnAgreementBtnLogin").css({"background-color": "#ffffff"})
-          $("#checkBtnAgreementBtnLogin").html("")
-          isAgree = false
+          $("#checkBtnAgreementBtnLogin").css({
+            "background-color": "#ffffff",
+          });
+          $("#checkBtnAgreementBtnLogin").html("");
+          isAgree = false;
         } else {
           //√）和叉号（×） - CodePen
-          $("#checkBtnAgreementBtnLogin").css({"background-color": "#cccccc"})
-          $("#checkBtnAgreementBtnLogin").html("√")
-          isAgree = true
+          $("#checkBtnAgreementBtnLogin").css({
+            "background-color": "#cccccc",
+          });
+          $("#checkBtnAgreementBtnLogin").html("√");
+          isAgree = true;
         }
-      })
-      console.log("isAgree:", isAgree)
+      });
+      console.log("isAgree:", isAgree);
 
       $("#loginBtn").click(function () {
-        console.log("trueeeeeeeeeee")
-        callApp("ask_deviceId")
+        console.log("trueeeeeeeeeee");
+        callApp("ask_deviceId");
 
         if (!isAgree) {
-          msgPageObj.show(NSLang("login.policy"))
-          return
+          msgPageObj.show(NSLang("login.policy"));
+          return;
         }
 
         if ($("#mobileLogin").val() == "" || $("#password").val() == "") {
-          msgPageObj.show(NSLang("login.password"))
+          msgPageObj.show(NSLang("login.password"));
         }
 
         if (
@@ -115,25 +104,25 @@
           $("#mobileLogin").val() != "" &&
           $("#password").val() != ""
         ) {
-          loaderObj.show()
+          loaderObj.show();
           setTimeout(function () {
-            loginFun()
-          }, 1000)
+            loginFun();
+          }, 1000);
         }
-      })
+      });
 
       function loginFun() {
         var mData = {
           name: $("#mobileLogin").val(),
           password: $("#password").val(),
-        }
-        console.log("mData:", mData)
+        };
+        console.log("mData:", mData);
 
         if (deviceId) {
           mData = {
             name: $("#mobileLogin").val(),
             password: $("#password").val(),
-          }
+          };
         }
 
         $.ajax({
@@ -146,30 +135,30 @@
           timeout: 100000,
           beforeSend: function (xmlhttprequest) {},
           success: function (data) {
-            loaderObj.unShow()
+            loaderObj.unShow();
 
             if (data.code == 0) {
               // location.reload();
-              cleanInput()
-              var tokenObj = data.result
-              localStorage.setItem("token", JSON.stringify(tokenObj))
-              mainObj.checkIsLogin()
+              cleanInput();
+              var tokenObj = data.result;
+              localStorage.setItem("token", JSON.stringify(tokenObj));
+              mainObj.checkIsLogin();
             } else {
-              msgPageObj.show(getStatusCode(data.code))
+              msgPageObj.show(getStatusCode(data.code));
             }
           },
           error: function (xmlhttprequest, error) {
-            loaderObj.unShow()
-            msgPageObj.show(NSLang("sys.serverError"))
+            loaderObj.unShow();
+            msgPageObj.show(NSLang("sys.serverError"));
           },
           complete: function () {},
-        })
+        });
 
         function cleanInput() {
-          $("#username").val("")
-          $("#password").val("")
+          $("#username").val("");
+          $("#password").val("");
         }
       }
-    }
+    };
   }
 </script>

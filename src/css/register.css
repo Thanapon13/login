@@ -1,5 +1,9 @@
 /** @format */
 
+#sendOtp {
+  border: 1px solid red;
+}
+
 #regist_email,
 #regist_otp,
 #regist_inviteCode,

@@ -1,12 +1,8 @@
 <!-- @format -->
 
-<link
-  rel="stylesheet"
-  href="css/register.css" />
+<link rel="stylesheet" href="css/register.css" />
 
-<div
-  id="registerPage"
-  class="flexCenter pageInit">
+<div id="registerPage" class="flexCenter pageInit">
   <div style="height: 20px"></div>
 
   <div style="width: 100%; height: auto">
@@ -16,7 +12,9 @@
         id="email"
         class="boxInput"
         type="email"
-        placeholder="email" />
+        placeholder="email"
+        autocomplete="off"
+      />
 
       <button id="sendOtp">Send OTP</button>
     </div>
@@ -29,7 +27,9 @@
         id="name"
         class="boxInput"
         type="text"
-        placeholder="Name" />
+        placeholder="Name"
+        autocomplete="off"
+      />
     </div>
 
     <div style="height: 15px"></div>
@@ -42,7 +42,9 @@
         type="number"
         placeholder="Phone"
         pattern="/^-?\d+\.?\d*$/"
-        onKeyPress="if(this.value.length==11) return false;" />
+        onKeyPress="if(this.value.length==11) return false;"
+        autocomplete="off"
+      />
     </div>
     <div style="height: 15px"></div>
 
@@ -52,7 +54,9 @@
         id="r_password"
         class="boxInput"
         type="password"
-        placeholder="Password" />
+        placeholder="Password"
+        autocomplete="off"
+      />
     </div>
 
     <div style="height: 15px"></div>
@@ -63,7 +67,9 @@
         id="r_password_again"
         class="boxInput"
         type="password"
-        placeholder="Confrim Password" />
+        placeholder="Confrim Password"
+        autocomplete="off"
+      />
     </div>
 
     <div style="height: 15px"></div>
@@ -74,7 +80,9 @@
         id="otp"
         class="boxInput"
         type="text"
-        placeholder="otp" />
+        placeholder="otp"
+        autocomplete="off"
+      />
     </div>
 
     <div style="height: 15px"></div>
@@ -85,7 +93,9 @@
         id="inviteCode"
         class="boxInput"
         type="text"
-        placeholder="inviteCode" />
+        placeholder="inviteCode"
+        autocomplete="off"
+      />
     </div>
 
     <div style="height: 15px"></div>
@@ -96,7 +106,9 @@
         id="deviceId"
         class="boxInput"
         type="text"
-        placeholder="deviceId" />
+        placeholder="deviceId"
+        autocomplete="off"
+      />
     </div>
 
     <div style="height: 15px"></div>
@@ -107,26 +119,22 @@
         id="platform"
         class="boxInput"
         type="number"
-        placeholder="platform" />
+        placeholder="platform"
+        autocomplete="off"
+      />
     </div>
   </div>
 
   <div style="height: 15px"></div>
 
   <div class="regist_bottom flexEndColW100">
-    <div
-      id="registerBtn"
-      class="btnComm">
-      Create
-    </div>
+    <div id="registerBtn" class="btnComm">Create</div>
 
     <div style="height: 10px"></div>
 
     <div class="flexCenter spanUnderSubmit">
       <div id="alreadyAcc"></div>
-      <div
-        style="color: #457bff"
-        id="loginNow2"></div>
+      <div style="color: #457bff" id="loginNow2"></div>
     </div>
   </div>
 
@@ -134,56 +142,56 @@
 </div>
 
 <script>
-  var registerObj = new register()
-  registerObj.init()
-  var myScroll
+  var registerObj = new register();
+  registerObj.init();
+  var myScroll;
 
   function register() {
     this.init = function () {
-      pageInit("registerPage")
-      setAllUILang("register")
+      pageInit("registerPage");
+      setAllUILang("register");
 
-      $("#regist_name").attr("src", picRes["account.png"])
-      $("#regist_mobile").attr("src", picRes["phone.png"])
-      $("#regist_pass").attr("src", picRes["password.png"])
-      $("#regist_pass2").attr("src", picRes["password.png"])
-      $("#regist_email").attr("src", picRes["email.png"])
-      $("#regist_otp").attr("src", picRes["otp.png"])
-      $("#regist_inviteCode").attr("src", picRes["inviteCode.png"])
-      $("#regist_deviceId").attr("src", picRes["deviceId.png"])
+      $("#regist_name").attr("src", picRes["account.png"]);
+      $("#regist_mobile").attr("src", picRes["phone.png"]);
+      $("#regist_pass").attr("src", picRes["password.png"]);
+      $("#regist_pass2").attr("src", picRes["password.png"]);
+      $("#regist_email").attr("src", picRes["email.png"]);
+      $("#regist_otp").attr("src", picRes["otp.png"]);
+      $("#regist_inviteCode").attr("src", picRes["inviteCode.png"]);
+      $("#regist_deviceId").attr("src", picRes["deviceId.png"]);
 
-      $("#registerPage").css({width: w, height: h})
+      $("#registerPage").css({ width: w, height: h });
 
       $("#loginNow2").click(() => {
-        pageShow("loginPage")
-        pageUnShow("registerPage")
-      })
+        pageShow("loginPage");
+        pageUnShow("registerPage");
+      });
 
       $("#r_password").keypress(function (event) {
-        var ew = event.which
-        if (32 <= ew && ew <= 122) return true
-        return false
-      })
+        var ew = event.which;
+        if (32 <= ew && ew <= 122) return true;
+        return false;
+      });
 
       $("#r_password_again").keypress(function (event) {
-        var ew = event.which
-        if (32 <= ew && ew <= 122) return true
-        return false
-      })
+        var ew = event.which;
+        if (32 <= ew && ew <= 122) return true;
+        return false;
+      });
 
       $("#registerBtn").click(function () {
-        var name = $("#name").val()
-        var mobile = $("#mobile").val()
-        var p = $("#r_password").val()
-        var p_again = $("#r_password_again").val()
+        var name = $("#name").val();
+        var mobile = $("#mobile").val();
+        var p = $("#r_password").val();
+        var p_again = $("#r_password_again").val();
         // var inviteCode = $("#inviteCode").val();
 
         if (mobile == "" || p == "" || p_again == "" || name == "") {
-          msgPageObj.show(NSLang("register.fill"))
+          msgPageObj.show(NSLang("register.fill"));
         }
 
         if (mobile.length != 11 && p != "" && p_again != "" && name != "") {
-          msgPageObj.show(NSLang("register.digit"))
+          msgPageObj.show(NSLang("register.digit"));
         }
         if (
           p.length < 6 &&
@@ -193,7 +201,7 @@
           mobile != "" &&
           name != ""
         ) {
-          msgPageObj.show(NSLang("register.pass"))
+          msgPageObj.show(NSLang("register.pass"));
         }
 
         if (
@@ -203,7 +211,7 @@
           p_again != "" &&
           name != ""
         ) {
-          msgPageObj.show(NSLang("register.repass"))
+          msgPageObj.show(NSLang("register.repass"));
         }
         if (
           mobile != "" &&
@@ -216,26 +224,26 @@
           (mobile.length = 11)
         ) {
           setTimeout(function () {
-            loaderObj.show()
-            registerFun()
-          }, 0)
+            loaderObj.show();
+            registerFun();
+          }, 0);
         }
-      })
+      });
 
       $("#sendOtp").click(function () {
-        var email = $("#email").val()
+        var email = $("#email").val();
         // console.log("email:", email)
 
         if (email != null) {
           setTimeout(function () {
-            loaderObj.show()
-            sendOtp()
-          }, 0)
+            loaderObj.show();
+            sendOtp();
+          }, 0);
         }
-      })
+      });
 
       function registerFun() {
-        loaderObj.show()
+        loaderObj.show();
         var mData = {
           email: $("#email").val(),
           mobile: $("#mobile").val(),
@@ -245,9 +253,9 @@
           inviteCode: null,
           deviceId: null,
           platform: null,
-        }
+        };
 
-        console.log("mData:", mData)
+        console.log("mData:", mData);
 
         $.ajax({
           type: "post",
@@ -259,45 +267,45 @@
           timeout: 100000,
           beforeSend: function (xmlhttprequest) {},
           success: function (data) {
-            loaderObj.unShow()
+            loaderObj.unShow();
             if (data.code == 0) {
-              cleanInput()
-              msgPageObj.show(NSLang("register.success"))
+              cleanInput();
+              msgPageObj.show(NSLang("register.success"));
               setTimeout(function () {
-                pageUnShow("registerPage")
-              }, 1000)
+                pageUnShow("registerPage");
+              }, 1000);
             } else {
-              msgPageObj.show(getStatusCode(data.code))
+              msgPageObj.show(getStatusCode(data.code));
             }
           },
           error: function (xmlhttprequest, error) {
-            loaderObj.unShow()
-            msgPageObj.show(NSLang("sys.serverError"))
-            cleanInput()
+            loaderObj.unShow();
+            msgPageObj.show(NSLang("sys.serverError"));
+            cleanInput();
           },
           complete: function () {},
-        })
+        });
 
         function cleanInput() {
-          $("#name").val("")
-          $("#mobile").val("")
-          $("#r_password").val("")
-          $("#r_password_again").val("")
-          $("#inviteCode").val("")
-          $("#email").val("")
-          $("#otp").val("")
-          $("#inviteCode").val("")
-          $("#deviceId").val("")
-          $("#platform").val("")
+          $("#name").val("");
+          $("#mobile").val("");
+          $("#r_password").val("");
+          $("#r_password_again").val("");
+          $("#inviteCode").val("");
+          $("#email").val("");
+          $("#otp").val("");
+          $("#inviteCode").val("");
+          $("#deviceId").val("");
+          $("#platform").val("");
         }
       }
 
       function sendOtp() {
-        loaderObj.show()
+        loaderObj.show();
         var mData = {
           email: $("#email").val(),
           type: 10,
-        }
+        };
 
         // console.log("mData:", mData)
 
@@ -311,22 +319,22 @@
           timeout: 100000,
           beforeSend: function (xmlhttprequest) {},
           success: function (data) {
-            console.log("data", data)
-            loaderObj.unShow()
+            console.log("data", data);
+            loaderObj.unShow();
             if (data.code == 0) {
-              msgPageObj.show(mData.email)
+              msgPageObj.show(mData.email);
             } else {
-              msgPageObj.show(getStatusCode(data.code))
+              msgPageObj.show(getStatusCode(data.code));
             }
           },
           error: function (xmlhttprequest, error) {
-            loaderObj.unShow()
-            msgPageObj.show(NSLang("sys.serverError"))
-            cleanInput()
+            loaderObj.unShow();
+            msgPageObj.show(NSLang("sys.serverError"));
+            cleanInput();
           },
           complete: function () {},
-        })
+        });
       }
-    }
+    };
   }
 </script>

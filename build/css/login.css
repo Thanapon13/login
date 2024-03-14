@@ -73,6 +73,24 @@ select:focus {
 }
 
 /* login */
+.container {
+  width: 70%;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.headerTitle {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerTitle h1 {
+  color: white;
+}
 
 .flexCenterColW100 {
   width: 100%;
@@ -86,7 +104,7 @@ select:focus {
   width: 100%;
   flex-direction: column;
   display: flex;
-  justify-content: end;
+  justify-content: start;
   align-items: center;
 }
 
@@ -128,30 +146,30 @@ select:focus {
 .coverBoxInput {
   display: flex;
   justify-content: center;
-  width: 80%;
-  position: relative;
-  margin: 0 auto;
+  align-items: center;
+  border: 1px solid white;
+  padding: 5px 20px;
+  background: none;
+  height: 30px;
+  border-radius: 5px;
+  font-size: var(--text-size02);
+  border-radius: 20px;
+  box-shadow: 1px 4px 4px 0px #457bff3d inset;
 }
 
 .coverBoxInput > img {
-  position: absolute;
-  left: 20px;
   width: 25px;
   height: 25px;
 }
 
 .boxInput {
-  padding: 5px 20px;
-  border: 0px;
-  background-color: #fff;
-  width: 80%;
-  height: 45px;
-  border-radius: 5px;
-  font-size: var(--text-size02);
-  border-radius: 20px;
-  box-shadow: 1px 4px 4px 0px #457bff3d inset;
-  padding-left: 58px;
   width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 5px 20px;
+  height: 20px;
+  font-size: var(--text-size02);
 }
 
 .btnComm {
@@ -193,9 +211,7 @@ img.regisImg {
 }
 
 .flexCenter.loginImg,
-.login_bottom,
-.flexCenter.regisImg,
-.regist_bottom {
+.flexCenter.regisImg {
   height: 200px;
 }
 
